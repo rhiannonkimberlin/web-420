@@ -1,9 +1,10 @@
 var mongoose = require('mongoose');
+
 var userSchema = new mongoose.Schema({
     username: String,
     password: String,
     email: String
-})
+});
 
 var User = module.exports = mongoose.model('user', userSchema);
 
@@ -15,4 +16,4 @@ module.exports.add=(user, callback) => {
 module.exports.getById = (id, callback) => {
     var query = {_id: id};
     User.findById(query, callback);
-}
+};

@@ -3,7 +3,8 @@ var router = express.Router();
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
-  res.render('index', { title: 'API Gateway' });
+  res.render('index', { title: 'API Gateway' 
+  });
 });
 
 module.exports = router;
