@@ -1,3 +1,13 @@
+/*
+============================================
+; Title:  user.js
+; Author: Professor Krasso
+; Date:   19 October 2020
+; Modified by: Rhiannon Kimberlin
+; Description: Assignment 1.4
+;===========================================
+*/
+
 var mongoose = require('mongoose');
 
 var userSchema = new mongoose.Schema({
@@ -17,3 +27,8 @@ module.exports.getById = (id, callback) => {
     var query = {_id: id};
     User.findById(query, callback);
 };
+
+module.exports.getOne = (e, callback) => {
+    var query = {email: e};
+    User.findOne(query, callback);
+}

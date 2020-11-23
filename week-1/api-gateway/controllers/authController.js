@@ -1,3 +1,13 @@
+/*
+============================================
+; Title:  authController.js
+; Author: Professor Krasso
+; Date:   19 October 2020
+; Modified by: Rhiannon Kimberlin
+; Description: Assignment 1.4
+;===========================================
+*/
+
 var User = require('../models/user');
 var jwt = require('jsonwebtoken');
 var bcrypt = require('bcryptjs');
@@ -42,4 +52,28 @@ exports.user_token = function(req, res) {
             res.status(200).send(user);
         });
     });
+};
+
+//Function to handle user login req
+exports.user_login= function(req, res) {
+
+    User.getOne(req.body.email, function(err, user) {
+        if (err) return res.status(500).send('Error on Server.');
+        if (!user) return res.status(404).send('No user found.');
+
+        var passwordIsValid = bcrypt.compareSync(req.body.password, user.password);
+
+        if (!passwordIsValid) return res.status(401).send({ auth: false, token: null});
+
+        var token =jwt.sign({ id: user._id}, config.web.secret, {
+            expiresIn: 86400 //expires in 24 hours
+        });
+
+        res.status(200).send( {auth: true, token: token});
+    })
+};
+
+//Allow user logout requests
+exports.user_logout = function(req, res) {
+    res.status(200).send({ auth: false, token: null});
 };

@@ -8,6 +8,7 @@
 ;===========================================
 */
 
+
 var createError = require('http-errors');
 var express = require('express');
 var path = require('path');
@@ -20,6 +21,9 @@ var indexRouter = require('./routes/index');
 var apiCatalog = require('./routes/api-catalog');
 
 var app=express();
+
+//Require Statement for api-catalog
+var apiCatalog = require('./routes/api-catalog'); 
 
 //mongodb
 mongoose.connect('mongodb+srv://admin:admin@buwebdev-cluster-1.7z3o0.mongodb.net/api-gateway?retryWrites=true&w=majority', {
@@ -39,6 +43,9 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
 app.use('/api', apiCatalog); //part ll
+
+//Assignment 2.3 Step 8
+App.use('/api', apiCatalog);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

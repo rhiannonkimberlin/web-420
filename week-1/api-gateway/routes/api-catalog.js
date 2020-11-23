@@ -1,3 +1,13 @@
+/*
+============================================
+; Title:  api-catalog.js
+; Author: Professor Krasso
+; Date:   19 October 2020
+; Modified by: Rhiannon Kimberlin
+; Description: Assignment 1.4
+;===========================================
+*/
+
 var express = require('express');
 var router = express.Router();
 
@@ -10,3 +20,9 @@ router.post('/auth/register', auth_controller.user_register);
 router.get('/auth/token', auth_controller.user_token);
 
 module.exports = router;
+
+// Allow new User Requests
+router.post('/auth/login', auth_controller.user_login);
+
+//Allow User Logout Requests
+router.get('/auth/logout', auth_controller.user_logout);
