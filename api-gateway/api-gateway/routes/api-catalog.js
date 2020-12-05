@@ -8,6 +8,13 @@
 ;===========================================
 */
 
+//Week 8 require Statements Step 4a
+var express =require('express');
+var checkToken = require('../check-token');
+var router = express.Router();
+
+var auth_controller = require('../controllers/authController');
+
 //Assignment 2.3 Step 6
 /**
 * API Routes
@@ -20,7 +27,7 @@ var auth_controller = require('../controllers/authController');
 router.post('/auth/register', auth_controller.user_register);
 
 // GET request for verifying user tokens
-router.get('/auth/token', auth_controller.user_token);
+router.get('/auth/token', checkToken, auth_controller.user_token);
 module.exports = router;
 
 //Assignment 6.3 Step 3 Allow new user login requests

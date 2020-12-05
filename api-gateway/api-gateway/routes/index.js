@@ -1,3 +1,13 @@
+/*
+============================================
+; Title:  index.js
+; Author: Professor Krasso
+; Date:   November 23 2020
+; Modified by: Rhiannon Kimberlin
+; Description: API Gateway
+;===========================================
+*/
+
 var express = require('express');
 var router = express.Router();
 
